@@ -16,7 +16,7 @@ class BookingSeeder extends Seeder
      */
     public function run()
     {
-        $total = 1000000; // 1M users
+        $total = 1000000; // 1M bookings
         $chunk = 5000;
 
         $recordsInserted = 0;

@@ -62,7 +62,7 @@ php artisan db:seed
 ```
 
 Result:
-You have 10 million users, 20 services, and 1 admin user with email : admin@admin.com and password : 123456 .
+You have 1 million bookings, 20 services, and 1 admin user with email : admin@admin.com and password : 123456 .
 Note:
 You have to wait and monitor in docker container log to monitor the laravel-queue to get all the seeding operation done.
 

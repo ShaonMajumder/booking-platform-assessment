@@ -13,6 +13,8 @@ use App\Models\Booking;
 use App\Models\Service;
 use Illuminate\Support\Facades\Log;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
+use ShaonMajumder\Facades\CacheHelper;
 
 class SeedBookingJob implements ShouldQueue
 {
@@ -41,9 +43,17 @@ class SeedBookingJob implements ShouldQueue
     public function handle()
     {
         try {
+            DB::beginTransaction();
+            $cacheKey = 'seed_booking_job_services';
+            self::$cachedServices = CacheHelper::getCache($cacheKey);
+
             if (is_null(self::$cachedServices)) {
                 self::$cachedServices = Service::pluck('id')->toArray();
+                CacheHelper::setCache($cacheKey, self::$cachedServices, 10);
             }
+
+            // disable query log to avoid memory issues
+            DB::disableQueryLog();
 
             // Instantiate the Faker object
             $faker = $this->faker;
@@ -65,11 +75,15 @@ class SeedBookingJob implements ShouldQueue
 
             Booking::insert($bookings);
 
+            DB::commit();
+
             Log::info("SeedBookingJob finished. Total inserted: " . count($bookings));
             
+            // Garbage collection
             unset($bookings);
             gc_collect_cycles();
         } catch (\Exception $e) {
+            DB::rollback();
             Log::error('Error in SeedBookingJob: ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
             return;
         }
