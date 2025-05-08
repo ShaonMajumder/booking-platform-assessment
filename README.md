@@ -99,41 +99,41 @@ Learn more at http://localhost:8000/api/documentation
 
 **Admin APIs (Protected by JWT)**
 
--   `POST /api/admin/login`
+-   `POST /api/v1/admin/login`
     Login admin api [Except JWT]
--   `POST /api/admin/logout`
+-   `POST /api/v1/admin/logout`
     Logout admin api
 
--   `GET /api/admin/bookings`
+-   `GET /api/v1/admin/bookings`
     List bookings with pagination
 
--   `GET /api/admin/bookings/{id}`
+-   `GET /api/v1/admin/bookings/{id}`
     Get a specific booking
 
--   `GET /api/admin/services`
+-   `GET /api/v1/admin/services`
     Get a list of services
 
--   `POST /api/admin/services`
+-   `POST /api/v1/admin/services`
     Create a new service
 
--   `GET /api/admin/services/{id}`
+-   `GET /api/v1/admin/services/{id}`
     Get a specific service by ID
 
--   `PUT /api/admin/services/{id}`
+-   `PUT /api/v1/admin/services/{id}`
     Update a specific service
 
--   `DELETE /api/admin/services/{id}`
+-   `DELETE /api/v1/admin/services/{id}`
     Delete a specific service
 
 **Public Api**
 
--   `POST /api/bookings`
+-   `POST /api/v1/bookings`
     Create a new service booking
 
--   `GET /api/bookings/{bookingId}`
+-   `GET /api/v1/bookings/{bookingId}`
     Retrieve the status of a booking
 
--   `GET /api/services`
+-   `GET /api/v1/services`
     List available services
 
 ---
@@ -240,4 +240,4 @@ This architecture is optimized for high availability, performance, and scalabili
 
 ---
 
-## 📌 Notes
+## 📌 Demo

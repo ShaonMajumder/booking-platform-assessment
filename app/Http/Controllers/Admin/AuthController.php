@@ -27,7 +27,7 @@ class AuthController extends Controller
 {
     /**
      * @OA\Post(
-     *     path="/api/admin/login",
+     *     path="/api/v1/admin/login",
      *     summary="Admin login",
      *     tags={"Authentication"},
      *     @OA\RequestBody(
@@ -99,7 +99,7 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/admin/logout",
+     *     path="/api/v1/admin/logout",
      *     summary="Admin logout",
      *     tags={"Authentication"},
      *     security={{"bearerAuth":{}}},

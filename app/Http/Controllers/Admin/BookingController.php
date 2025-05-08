@@ -39,7 +39,7 @@ class BookingController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/admin/bookings",
+     *     path="/api/v1/admin/bookings",
      *     summary="List bookings with pagination",
      *     tags={"Admin Bookings"},
      *     security={{"bearerAuth":{}}},
@@ -131,7 +131,7 @@ class BookingController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/admin/bookings/{id}",
+     *     path="/api/v1/admin/bookings/{id}",
      *     summary="Get a specific booking",
      *     tags={"Admin Bookings"},
      *     security={{"bearerAuth":{}}},

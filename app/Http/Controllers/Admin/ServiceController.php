@@ -27,7 +27,7 @@ class ServiceController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/admin/services",
+     *     path="/api/v1/admin/services",
      *     summary="Get a list of services",
      *     tags={"Admin Services"},
      *     security={{"bearerAuth":{}}},
@@ -75,7 +75,7 @@ class ServiceController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/admin/services",
+     *     path="/api/v1/admin/services",
      *     summary="Create a new service",
      *     tags={"Admin Services"},
      *     security={{"bearerAuth":{}}},
@@ -173,7 +173,7 @@ class ServiceController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/admin/services/{id}",
+     *     path="/api/v1/admin/services/{id}",
      *     summary="Get a specific service by ID",
      *     tags={"Admin Services"},
      *     security={{"bearerAuth":{}}},
@@ -249,7 +249,7 @@ class ServiceController extends Controller
 
      /**
      * @OA\Put(
-     *     path="/api/admin/services/{id}",
+     *     path="/api/v1/admin/services/{id}",
      *     summary="Update a specific service",
      *     tags={"Admin Services"},
      *     security={{"bearerAuth":{}}},
@@ -364,7 +364,7 @@ class ServiceController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/admin/services/{id}",
+     *     path="/api/v1/admin/services/{id}",
      *     summary="Delete a specific service",
      *     tags={"Admin Services"},
      *     security={{"bearerAuth":{}}},

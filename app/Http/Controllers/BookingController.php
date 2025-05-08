@@ -18,7 +18,7 @@ class BookingController extends Controller
 {
     /**
      * @OA\Post(
-     *     path="/api/bookings",
+     *     path="/api/v1/bookings",
      *     summary="Create a new service booking",
      *     description="This endpoint allows customers to book a service by providing their name, phone number, and service ID.",
      *     operationId="storeBooking",
@@ -117,7 +117,7 @@ class BookingController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/bookings/{bookingId}",
+     *     path="/api/v1/bookings/{bookingId}",
      *     summary="Retrieve the status of a booking",
      *     description="This endpoint allows customers to check the status of their booking using a unique booking ID.",
      *     operationId="getBookingStatus",

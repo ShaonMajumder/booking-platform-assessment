@@ -31,7 +31,7 @@ class ServiceController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/services",
+     *     path="/api/v1/services",
      *     summary="Get a list of available services",
      *     description="Retrieves a paginated list of services with optional pagination query parameters. The results are cached for performance.",
      *     operationId="getServices",
@@ -63,9 +63,9 @@ class ServiceController extends Controller
      *                 @OA\Property(property="current_page", type="integer", example=1),
      *                 @OA\Property(property="per_page", type="integer", example=10),
      *                 @OA\Property(property="total", type="integer", example=20),
-     *                 @OA\Property(property="first_page_url", type="string", example="http://127.0.0.1:8000/api/services?page=1"),
-     *                 @OA\Property(property="last_page_url", type="string", example="http://127.0.0.1:8000/api/services?page=2"),
-     *                 @OA\Property(property="next_page_url", type="string", nullable=true, example="http://127.0.0.1:8000/api/services?page=2"),
+     *                 @OA\Property(property="first_page_url", type="string", example="http://127.0.0.1:8000/api/v1/services?page=1"),
+     *                 @OA\Property(property="last_page_url", type="string", example="http://127.0.0.1:8000/api/v1/services?page=2"),
+     *                 @OA\Property(property="next_page_url", type="string", nullable=true, example="http://127.0.0.1:8000/api/v1/services?page=2"),
      *                 @OA\Property(property="prev_page_url", type="string", nullable=true, example=null),
      *                 @OA\Property(
      *                     property="data",

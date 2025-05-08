@@ -9,13 +9,13 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/admin/login": {
+        "/api/v1/admin/login": {
             "post": {
                 "tags": [
                     "Authentication"
                 ],
                 "summary": "Admin login",
-                "operationId": "02064f557af8baf1c24fd21c09b689f3",
+                "operationId": "1b64d6b0672e0fdc9131181885e54ab4",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -91,13 +91,13 @@
                 }
             }
         },
-        "/api/admin/logout": {
+        "/api/v1/admin/logout": {
             "post": {
                 "tags": [
                     "Authentication"
                 ],
                 "summary": "Admin logout",
-                "operationId": "18687458536b64e1e1c3725706529bb2",
+                "operationId": "843acc0e7afa9d9d19ebf27c11cada76",
                 "responses": {
                     "200": {
                         "description": "Logged out successfully",
@@ -126,13 +126,13 @@
                 ]
             }
         },
-        "/api/admin/bookings": {
+        "/api/v1/admin/bookings": {
             "get": {
                 "tags": [
                     "Admin Bookings"
                 ],
                 "summary": "List bookings with pagination",
-                "operationId": "2259635a015b5c8d898d2a8776cdcca0",
+                "operationId": "60e5cd4600add0428d5c331d7066efbd",
                 "parameters": [
                     {
                         "name": "page",
@@ -188,13 +188,13 @@
                 ]
             }
         },
-        "/api/admin/bookings/{id}": {
+        "/api/v1/admin/bookings/{id}": {
             "get": {
                 "tags": [
                     "Admin Bookings"
                 ],
                 "summary": "Get a specific booking",
-                "operationId": "0e796f08e36f923c8ba17fc6f8af609b",
+                "operationId": "bd54d4f58af6e013e7e02a8195ee01cb",
                 "parameters": [
                     {
                         "name": "id",
@@ -230,13 +230,13 @@
                 ]
             }
         },
-        "/api/admin/services": {
+        "/api/v1/admin/services": {
             "get": {
                 "tags": [
                     "Admin Services"
                 ],
                 "summary": "Get a list of services",
-                "operationId": "6e9001615f53283870c9b0eacb4df624",
+                "operationId": "18efc28f21a1bc9993a93552b507cc36",
                 "responses": {
                     "200": {
                         "description": "List of services",
@@ -276,7 +276,7 @@
                     "Admin Services"
                 ],
                 "summary": "Create a new service",
-                "operationId": "ba7f8a1b03eae64b43a336b55ab05fe4",
+                "operationId": "a7431b62aa8a0002a486275d9b1600b7",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -359,13 +359,13 @@
                 ]
             }
         },
-        "/api/admin/services/{id}": {
+        "/api/v1/admin/services/{id}": {
             "get": {
                 "tags": [
                     "Admin Services"
                 ],
                 "summary": "Get a specific service by ID",
-                "operationId": "995b65c887ca6288d4d693a90e6a3080",
+                "operationId": "767391935ff865c5badae576481a448d",
                 "parameters": [
                     {
                         "name": "id",
@@ -433,7 +433,7 @@
                     "Admin Services"
                 ],
                 "summary": "Update a specific service",
-                "operationId": "475e189a96f7c2141f791ee85758cffc",
+                "operationId": "810f57c55d83b2e4da655a27ca4a0ea5",
                 "parameters": [
                     {
                         "name": "id",
@@ -531,7 +531,7 @@
                     "Admin Services"
                 ],
                 "summary": "Delete a specific service",
-                "operationId": "65ddfc21a072f54135bbb1da0a28e2bf",
+                "operationId": "8f588a89efb198ced207ede82224906e",
                 "parameters": [
                     {
                         "name": "id",
@@ -592,7 +592,7 @@
                 ]
             }
         },
-        "/api/bookings": {
+        "/api/v1/bookings": {
             "post": {
                 "tags": [
                     "Bookings"
@@ -676,7 +676,7 @@
                 }
             }
         },
-        "/api/bookings/{bookingId}": {
+        "/api/v1/bookings/{bookingId}": {
             "get": {
                 "tags": [
                     "Bookings"
@@ -805,7 +805,7 @@
                 }
             }
         },
-        "/api/services": {
+        "/api/v1/services": {
             "get": {
                 "tags": [
                     "Services"
@@ -866,15 +866,15 @@
                                                 },
                                                 "first_page_url": {
                                                     "type": "string",
-                                                    "example": "http://127.0.0.1:8000/api/services?page=1"
+                                                    "example": "http://127.0.0.1:8000/api/v1/services?page=1"
                                                 },
                                                 "last_page_url": {
                                                     "type": "string",
-                                                    "example": "http://127.0.0.1:8000/api/services?page=2"
+                                                    "example": "http://127.0.0.1:8000/api/v1/services?page=2"
                                                 },
                                                 "next_page_url": {
                                                     "type": "string",
-                                                    "example": "http://127.0.0.1:8000/api/services?page=2",
+                                                    "example": "http://127.0.0.1:8000/api/v1/services?page=2",
                                                     "nullable": true
                                                 },
                                                 "prev_page_url": {

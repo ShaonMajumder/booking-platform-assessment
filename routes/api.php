@@ -22,20 +22,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::middleware(['throttle:public-api'])->group(function () {
-    Route::get('services', [ServiceController::class, 'index']);
-    Route::post('bookings', [BookingController::class, 'store']);
-    Route::get('bookings/{bookingId}', [BookingController::class, 'show']);
-});
-
-Route::prefix('admin')->group(function () {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:admin');
-
-    Route::middleware(['auth:admin','throttle:admin-api'])->group(function () {
-        Route::apiResource('services', AdminServiceController::class);
-        Route::get('bookings', [AdminBookingController::class, 'index']);
-        Route::get('bookings/{id}', [AdminBookingController::class, 'show']);
-    });
-});
