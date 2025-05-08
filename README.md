@@ -242,3 +242,5 @@ This architecture is optimized for high availability, performance, and scalabili
 ---
 
 ## 📌 Demo
+
+booking-platform-assessment demo - https://www.youtube.com/watch?v=hl5UVgxztC8
