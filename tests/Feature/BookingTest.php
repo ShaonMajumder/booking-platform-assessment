@@ -22,26 +22,55 @@ class BookingTest extends TestCase
             'schedule_date' => Carbon::now()->addDays(2)->toDateString(),
         ];
 
-        $response = $this->postJson('/api/bookings', $payload);
+        $response = $this->postJson('/api/v1/bookings', $payload);
 
         $response->assertStatus(201)
-                 ->assertJsonStructure([
-                     'booking_id',
-                     'status',
-                 ])
-                 ->assertJson(['status' => 'pending']);
+         ->assertJsonStructure([
+             'success',
+             'message',
+             'data' => [
+                 'booking_id',
+                 'name',
+                 'phone_number',
+                 'service_id',
+                 'booking_date',
+                 'status',
+             ],
+         ])
+         ->assertJson([
+             'success' => true,
+             'message' => 'Booking created successfully.',
+             'data' => [
+                 'status' => 'pending',
+             ],
+         ]);
+              
+
     }
 
     public function test_booking_status_retrieval()
     {
         $booking = Booking::factory()->create();
 
-        $response = $this->getJson("/api/bookings/{$booking->id}");
+        $response = $this->getJson("/api/v1/bookings/{$booking->id}");
 
         $response->assertStatus(200)
-                 ->assertJson([
-                     'booking_id' => $booking->id,
-                     'status' => 'pending', // assuming initial status is 0 = pending
-                 ]);
+            ->assertJsonStructure([
+                'success',
+                'message',
+                'data' => [
+                    'booking_id',
+                    'status',
+                    'service' => [
+                        'id',
+                        'name',
+                        'category',
+                        'price',
+                        'description',
+                    ],
+                    'schedule_date_time',
+                ],
+            ]);
+
     }
 }

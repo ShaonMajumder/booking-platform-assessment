@@ -13,14 +13,31 @@ class ServiceTest extends TestCase
     {
         Service::factory()->count(15)->create();
 
-        $response = $this->getJson('/api/services?page=1&per_page=10');
+        $response = $this->getJson('/api/v1/services?page=1&per_page=10');
 
         $response->assertStatus(200)
-                 ->assertJsonStructure([
-                     'current_page',
-                     'data',
-                     'total',
-                     'per_page',
-                 ]);
+            ->assertJsonStructure([
+                'success',
+                'message',
+                'data' => [
+                    'current_page',
+                    'per_page',
+                    'total',
+                    'first_page_url',
+                    'last_page_url',
+                    'next_page_url',
+                    'prev_page_url',
+                    'data' => [
+                        '*' => [
+                            'id',
+                            'name',
+                            'category',
+                            'price',
+                            'description',
+                        ]
+                    ]
+                ],
+            ]);
+
     }
 }
