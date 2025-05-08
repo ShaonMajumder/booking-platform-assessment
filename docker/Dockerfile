@@ -62,9 +62,9 @@ RUN if [ -f artisan ]; then \
     echo "Laravel not found. Skipping permissions and key generation."; \
     fi
 
-COPY ./docker/startup.sh /usr/local/bin/startup.sh
-RUN chmod +x /usr/local/bin/startup.sh
-ENTRYPOINT ["/usr/local/bin/startup.sh"]
+# COPY ./docker/startup.sh /usr/local/bin/startup.sh
+# RUN chmod +x /usr/local/bin/startup.sh
+# ENTRYPOINT ["/usr/local/bin/startup.sh"]
 
 EXPOSE 80
 
