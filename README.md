@@ -45,7 +45,7 @@ cd booking-platform-assessment
 docker-compose up --build
 ```
 
-### Migrate
+### 2. Migrate
 
 Wait for some time to get all the service containers of docker to up.
 Then in another conosle,
@@ -55,7 +55,7 @@ docker exec -it laravel-app bash
 php artisan migrate:fresh
 ```
 
-### Seed
+### 3. Seed
 
 ```bash
 php artisan db:seed
@@ -75,6 +75,8 @@ php artisan tinker
 \App\Models\Admin::count();
 ```
 
+---
+
 ## 🧪 Running Tests
 
 ```bash
@@ -88,6 +90,8 @@ Test coverage includes:
 -   Booking creation
 
 -   Booking status retrieval
+
+---
 
 ## Api Documentation
 
@@ -131,6 +135,8 @@ Learn more at http://localhost:8000/api/documentation
 
 -   `GET /api/services`
     List available services
+
+---
 
 ## Competitive Advantages of this Architecture
 
@@ -222,6 +228,8 @@ This architecture is optimized for high availability, performance, and scalabili
 
 -   Booking data grows over time → partition by month or archive old rows if high volume.
 
+---
+
 ## ✅ TODO (Future Enhancements)
 
 -   Load Balancing
@@ -229,5 +237,7 @@ This architecture is optimized for high availability, performance, and scalabili
 -   Observibility 1 - Monitor Health, CPU Usage and other important systems Stats - with Promethues + Grafana
 -   Feature 1 - Admin dashboard frontend (Vue/React or Blade)
 -   Feature 2 - Booking cancellation or rescheduling
+
+---
 
 ## 📌 Notes
