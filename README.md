@@ -45,7 +45,7 @@ cd booking-platform-assessment
 docker-compose up --build
 ```
 
-### Migrate & Seed
+### Migrate
 
 Wait for some time to get all the service containers of docker to up.
 Then in another conosle,
