@@ -8,13 +8,193 @@
 	},
 	"item": [
 		{
-			"name": "Admin",
+			"name": "admin-api",
 			"item": [
+				{
+					"name": "services",
+					"item": [
+						{
+							"name": "services",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/admin/services/535d7ec3-86dc-4c3a-8d64-c21e7092895a",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"services",
+										"535d7ec3-86dc-4c3a-8d64-c21e7092895a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "service-create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"AC Repair 23\",\r\n  \"category\": \"Electrical\",\r\n  \"price\": 1000,\r\n  \"description\": \"Air conditioner maintenance and repair\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/admin/services",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"services"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "service-update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"AC Repair 23 4\",\r\n  \"category\": \"Electrical\",\r\n  \"price\": 1000,\r\n  \"description\": \"Air conditioner maintenance and repair\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/admin/services/535d7ec3-86dc-4c3a-8d64-c21e7092895a",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"services",
+										"535d7ec3-86dc-4c3a-8d64-c21e7092895a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "service-delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"AC Repair 2\",\r\n  \"category\": \"Electrical\",\r\n  \"price\": 1000,\r\n  \"description\": \"Air conditioner maintenance and repair\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/v1/admin/services/535d7ec3-86dc-4c3a-8d64-c21e7092895a5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"services",
+										"535d7ec3-86dc-4c3a-8d64-c21e7092895a5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "login",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"123456\"\r\n}",
@@ -25,7 +205,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/admin/login",
+							"raw": "http://127.0.0.1:8000/api/v1/admin/login",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -36,6 +216,7 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"admin",
 								"login"
 							]
@@ -44,10 +225,16 @@
 					"response": []
 				},
 				{
-					"name": "services",
+					"name": "logout",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"123456\"\r\n}",
@@ -58,7 +245,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/admin/services",
+							"raw": "http://127.0.0.1:8000/api/v1/admin/logout",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -69,8 +256,9 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"admin",
-								"services"
+								"logout"
 							]
 						}
 					},
@@ -83,7 +271,13 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"123456\"\r\n}",
@@ -94,7 +288,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/admin/bookings/2e7ea670-1f90-460b-b87c-d3a1c8b2f03f",
+							"raw": "http://127.0.0.1:8000/api/v1/admin/bookings/2e7ea670-1f90-460b-b87c-d3a1c8b2f03f",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -105,6 +299,7 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"admin",
 								"bookings",
 								"2e7ea670-1f90-460b-b87c-d3a1c8b2f03f"
@@ -120,7 +315,13 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"123456\"\r\n}",
@@ -131,7 +332,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/admin/bookings/2e7ea670-1f90-460b-b87c-d3a1c8b2f03f",
+							"raw": "http://127.0.0.1:8000/api/v1/admin/bookings",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -142,9 +343,9 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"admin",
-								"bookings",
-								"2e7ea670-1f90-460b-b87c-d3a1c8b2f03f"
+								"bookings"
 							]
 						}
 					},
@@ -156,7 +357,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE3NDY3MjQyNTcsImV4cCI6MTc0NjcyNzg1NywibmJmIjoxNzQ2NzI0MjU3LCJqdGkiOiIwQk5RUFNoOXFjelh1NWtaIiwic3ViIjoyLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.0Ikt4CGEoYaxYTBWLtBFf1E7kWspWlJNvdDRyAVq8VQ",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYWRtaW5cL2xvZ2luIiwiaWF0IjoxNzQ2NzM4OTAwLCJleHAiOjE3NDY3NDI1MDAsIm5iZiI6MTc0NjczODkwMCwianRpIjoic2N5VG93S1JBY2FnZzNNciIsInN1YiI6MiwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.sQsUQAw90A0xEa4BYV43olwBUhRUDovezxCwPtBS6Mw",
 						"type": "string"
 					}
 				]
@@ -185,89 +386,129 @@
 			]
 		},
 		{
-			"name": "services",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/services",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"services"
-					]
+			"name": "public-api",
+			"item": [
+				{
+					"name": "show-booking",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"service_id\": 0,\r\n  \"name\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"schedule_date\": \"2025-05-08T12:51:22.653Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/bookings/66b3978d-fcac-4bbc-80a3-348738f41383",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"bookings",
+								"66b3978d-fcac-4bbc-80a3-348738f41383"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/services",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"service_id\": \"0a2e6412-afbc-4bb3-ac92-30eca89aa4df\",\r\n  \"name\": \"Shaon\",\r\n  \"phone\": \"+8801832540116\",\r\n  \"schedule_date\": \"2025-05-09T12:51:22.653Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"bookings"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYWRtaW5cL2xvZ2luIiwiaWF0IjoxNzQ2NzM4OTAwLCJleHAiOjE3NDY3NDI1MDAsIm5iZiI6MTc0NjczODkwMCwianRpIjoic2N5VG93S1JBY2FnZzNNciIsInN1YiI6MiwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.sQsUQAw90A0xEa4BYV43olwBUhRUDovezxCwPtBS6Mw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		},
 		{
-			"name": "create-booking",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"service_id\": \"028c9fb6-ebfd-4003-ad5c-681ff37263d5\",\r\n  \"name\": \"Shaon\",\r\n  \"phone\": \"+8801832540116\",\r\n  \"schedule_date\": \"2025-05-09T12:51:22.653Z\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/bookings",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"bookings"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "show-booking",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"service_id\": 0,\r\n  \"name\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"schedule_date\": \"2025-05-08T12:51:22.653Z\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/bookings/3b337895-b068-448d-bef4-cf4637f4a6e8",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"bookings",
-						"3b337895-b068-448d-bef4-cf4637f4a6e8"
-					]
-				}
-			},
-			"response": []
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

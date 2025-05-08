@@ -95,7 +95,8 @@ Test coverage includes:
 
 ## Api Documentation
 
-Learn more at http://localhost:8000/api/documentation
+Learn more at swagger documentation http://localhost:8000/api/documentation
+Postman Collection - In project folder `sheba.xyz.postman_collection.json`
 
 **Admin APIs (Protected by JWT)**
 

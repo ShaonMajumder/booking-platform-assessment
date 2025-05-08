@@ -309,3 +309,8 @@
 2025-05-08 20:31:39,294 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2025-05-08 20:31:39,294 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2025-05-08 20:31:39,294 INFO success: queue entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-05-08 21:25:40,275 WARN received SIGQUIT indicating exit request
+2025-05-08 21:25:40,275 INFO waiting for nginx, php-fpm, queue to die
+2025-05-08 21:25:41,281 INFO stopped: queue (exit status 0)
+2025-05-08 21:25:41,286 INFO stopped: php-fpm (exit status 0)
+2025-05-08 21:25:41,301 INFO stopped: nginx (exit status 0)
