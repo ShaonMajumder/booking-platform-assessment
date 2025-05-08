@@ -1,0 +1,1102 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Service Booking API",
+        "description": "A Laravel-based API for booking services.",
+        "contact": {
+            "email": "smazoomder@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/admin/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Admin login",
+                "operationId": "02064f557af8baf1c24fd21c09b689f3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "admin@admin.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": 3600
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Invalid credentials"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation failed"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/admin/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Admin logout",
+                "operationId": "18687458536b64e1e1c3725706529bb2",
+                "responses": {
+                    "200": {
+                        "description": "Logged out successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully logged out"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/bookings": {
+            "get": {
+                "tags": [
+                    "Admin Bookings"
+                ],
+                "summary": "List bookings with pagination",
+                "operationId": "2259635a015b5c8d898d2a8776cdcca0",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Number of items per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of bookings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid pagination parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/bookings/{id}": {
+            "get": {
+                "tags": [
+                    "Admin Bookings"
+                ],
+                "summary": "Get a specific booking",
+                "operationId": "0e796f08e36f923c8ba17fc6f8af609b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Booking UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "example": "b3c5a1a4-85e1-4b4e-b1e5-bb9f7c19e3ea"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Booking found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Booking"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/services": {
+            "get": {
+                "tags": [
+                    "Admin Services"
+                ],
+                "summary": "Get a list of services",
+                "operationId": "6e9001615f53283870c9b0eacb4df624",
+                "responses": {
+                    "200": {
+                        "description": "List of services",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Services retrieved successfully."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Service"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Admin Services"
+                ],
+                "summary": "Create a new service",
+                "operationId": "ba7f8a1b03eae64b43a336b55ab05fe4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ServiceRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Service created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Service created successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Service"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Service already exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "A service with the same name and category already exists."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Service creation failed."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/services/{id}": {
+            "get": {
+                "tags": [
+                    "Admin Services"
+                ],
+                "summary": "Get a specific service by ID",
+                "operationId": "995b65c887ca6288d4d693a90e6a3080",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Service ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Service retrieved successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Service"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Service not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Service not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Admin Services"
+                ],
+                "summary": "Update a specific service",
+                "operationId": "475e189a96f7c2141f791ee85758cffc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Service ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ServiceRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Service updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Service updated successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Service"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Another service with the same name and category already exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Another service with the same name and category already exists."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Service not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Service not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Admin Services"
+                ],
+                "summary": "Delete a specific service",
+                "operationId": "65ddfc21a072f54135bbb1da0a28e2bf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Service ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Service deleted successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Service not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Service not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/bookings": {
+            "post": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Create a new service booking",
+                "description": "This endpoint allows customers to book a service by providing their name, phone number, and service ID.",
+                "operationId": "storeBooking",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "service_id",
+                                    "name",
+                                    "phone",
+                                    "schedule_date"
+                                ],
+                                "properties": {
+                                    "service_id": {
+                                        "description": "Service UUID",
+                                        "type": "string",
+                                        "format": "uuid"
+                                    },
+                                    "name": {
+                                        "description": "Customer name",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Customer phone number",
+                                        "type": "string"
+                                    },
+                                    "schedule_date": {
+                                        "description": "Scheduled date and time for service",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "example": {
+                                "service_id": "028c9fb6-ebfd-4003-ad5c-681ff37263d5",
+                                "name": "Shaon",
+                                "phone": "+8801832540116",
+                                "schedule_date": "2025-05-09T12:51:22.653Z"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Booking created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "booking_id": {
+                                            "description": "Booking ID",
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "status": {
+                                            "description": "Booking status",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request data"
+                    },
+                    "404": {
+                        "description": "Service not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/bookings/{bookingId}": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Retrieve the status of a booking",
+                "description": "This endpoint allows customers to check the status of their booking using a unique booking ID.",
+                "operationId": "getBookingStatus",
+                "parameters": [
+                    {
+                        "name": "bookingId",
+                        "in": "path",
+                        "description": "UUID of the booking",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Booking status retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Booking retrieved from cache."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "booking_id": {
+                                                    "type": "string",
+                                                    "format": "uuid",
+                                                    "example": "e183b1a8-c0b3-41a2-be77-4b16a9670c01"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "pending"
+                                                },
+                                                "service": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "format": "uuid",
+                                                            "example": "028c9fb6-ebfd-4003-ad5c-681ff37263d5"
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "Cleaning Service"
+                                                        },
+                                                        "category": {
+                                                            "type": "string",
+                                                            "example": "Cleaning"
+                                                        },
+                                                        "price": {
+                                                            "type": "string",
+                                                            "example": "100.00"
+                                                        },
+                                                        "description": {
+                                                            "type": "string",
+                                                            "example": "Cleaning description goes here."
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "schedule_date_time": {
+                                                    "type": "string",
+                                                    "format": "datetime",
+                                                    "example": "2025-05-09 12:51:22"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Booking not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Booking not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/services": {
+            "get": {
+                "tags": [
+                    "Services"
+                ],
+                "summary": "Get a list of available services",
+                "description": "Retrieves a paginated list of services with optional pagination query parameters. The results are cached for performance.",
+                "operationId": "getServices",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number for pagination.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "The number of services per page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of services",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Services retrieved from cache."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "per_page": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 20
+                                                },
+                                                "first_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://127.0.0.1:8000/api/services?page=1"
+                                                },
+                                                "last_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://127.0.0.1:8000/api/services?page=2"
+                                                },
+                                                "next_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://127.0.0.1:8000/api/services?page=2",
+                                                    "nullable": true
+                                                },
+                                                "prev_page_url": {
+                                                    "type": "string",
+                                                    "example": null,
+                                                    "nullable": true
+                                                },
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Service"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error for pagination parameters",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid pagination parameters."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "An unexpected error occurred."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Booking": {
+                "title": "Booking",
+                "required": [
+                    "id",
+                    "user_id",
+                    "service_id",
+                    "status"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 12
+                    },
+                    "service_id": {
+                        "type": "integer",
+                        "example": 3
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "pending"
+                    },
+                    "scheduled_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-05-09T14:30:00Z"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-05-08T10:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-05-08T10:30:00Z"
+                    },
+                    "service": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 3
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Plumbing"
+                            },
+                            "price": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 200.5
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "ServiceRequest": {
+                "required": [
+                    "name",
+                    "category",
+                    "price",
+                    "duration"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "AC Repair"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "Home Services"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 1500.75
+                    },
+                    "duration": {
+                        "type": "integer",
+                        "example": 90
+                    }
+                },
+                "type": "object"
+            },
+            "Service": {
+                "required": [
+                    "id",
+                    "name",
+                    "category",
+                    "price",
+                    "description"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Service ID",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Service name",
+                        "type": "string"
+                    },
+                    "category": {
+                        "description": "Service category",
+                        "type": "string"
+                    },
+                    "price": {
+                        "description": "Service price",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "description": {
+                        "description": "Service description",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Use a valid bearer token",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Admin authentication operations"
+        },
+        {
+            "name": "Admin Bookings",
+            "description": "Admin Bookings"
+        },
+        {
+            "name": "Admin Services",
+            "description": "Admin Services"
+        },
+        {
+            "name": "Bookings",
+            "description": "Bookings"
+        },
+        {
+            "name": "Services",
+            "description": "Services"
+        }
+    ]
+}

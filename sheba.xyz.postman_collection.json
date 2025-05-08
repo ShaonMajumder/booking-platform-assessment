@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "7145a795-0fa1-4636-b95b-0058b7043dbe",
+		"name": "sheba.xyz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14446125",
+		"_collection_link": "https://kx-mobile-app.postman.co/workspace/Team-Workspace~897f03ab-bc92-4f5b-8d56-7f9bfb84ed66/collection/14446125-7145a795-0fa1-4636-b95b-0058b7043dbe?action=share&source=collection_link&creator=14446125"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/admin/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "services",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/admin/services",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"admin",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-booking",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/admin/bookings/2e7ea670-1f90-460b-b87c-d3a1c8b2f03f",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"admin",
+								"bookings",
+								"2e7ea670-1f90-460b-b87c-d3a1c8b2f03f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookings-all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/admin/bookings/2e7ea670-1f90-460b-b87c-d3a1c8b2f03f",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"admin",
+								"bookings",
+								"2e7ea670-1f90-460b-b87c-d3a1c8b2f03f"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE3NDY3MjQyNTcsImV4cCI6MTc0NjcyNzg1NywibmJmIjoxNzQ2NzI0MjU3LCJqdGkiOiIwQk5RUFNoOXFjelh1NWtaIiwic3ViIjoyLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.0Ikt4CGEoYaxYTBWLtBFf1E7kWspWlJNvdDRyAVq8VQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "services",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/services",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"service_id\": \"028c9fb6-ebfd-4003-ad5c-681ff37263d5\",\r\n  \"name\": \"Shaon\",\r\n  \"phone\": \"+8801832540116\",\r\n  \"schedule_date\": \"2025-05-09T12:51:22.653Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show-booking",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"service_id\": 0,\r\n  \"name\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"schedule_date\": \"2025-05-08T12:51:22.653Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/bookings/3b337895-b068-448d-bef4-cf4637f4a6e8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"bookings",
+						"3b337895-b068-448d-bef4-cf4637f4a6e8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

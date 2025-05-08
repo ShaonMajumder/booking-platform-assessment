@@ -10,12 +10,14 @@ if [ ! -f artisan ]; then
     echo "Copying Laravel to current directory..."
     cp -R /tmp/laravel/. .
     rm -rf /tmp/laravel
+
+    echo "Setting correct permissions for the storage directory..."
+    chown -R www-data:www-data /var/www/html/storage
+    chmod -R 775 /var/www/html/storage
 else
     echo "Laravel already exists. Skipping creation."
 fi
 
-echo "Setting correct permissions for the storage directory..."
-chown -R www-data:www-data /var/www/html/storage
-chmod -R 775 /var/www/html/storage
+
 
 exec "$@"
